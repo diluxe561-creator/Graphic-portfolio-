@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chukwuemeka Ruth | Graphic Designer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-brown: #6B4423;
+            --cream: #F5F1E8;
+            --warm-brown: #8B6F47;
+            --light-cream: #FAF7F2;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-cream);
+            color: #2C2416;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .circle-mask {
+            clip-path: circle(50% at 50% 50%);
+        }
+        
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .rotate-slow {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .skill-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .portfolio-item {
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: scale(1.03);
+            z-index: 10;
+        }
+        
+        .software-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .software-icon:hover {
+            transform: translateY(-5px) rotate(5deg);
+        }
+        
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .text-reveal {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Grain Overlay -->
+    <div class="grain"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-[#FAF7F2]/80 backdrop-blur-md border-b border-[#6B4423]/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold serif text-[#6B4423] tracking-tight">CR.</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-[#2C2416]/80">
+                <a href="#about" class="hover:text-[#6B4423] transition-colors">About</a>
+                <a href="#skills" class="hover:text-[#6B4423] transition-colors">Skills</a>
+                <a href="#portfolio" class="hover:text-[#6B4423] transition-colors">Portfolio</a>
+                <a href="#software" class="hover:text-[#6B4423] transition-colors">Tools</a>
+                <a href="#contact" class="hover:text-[#6B4423] transition-colors">Contact</a>
+            </div>
+            <button class="md:hidden text-[#6B4423]" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#FAF7F2] border-t border-[#6B4423]/10 p-6 space-y-4">
+            <a href="#about" class="block text-[#2C2416]">About</a>
+            <a href="#skills" class="block text-[#2C2416]">Skills</a>
+            <a href="#portfolio" class="block text-[#2C2416]">Portfolio</a>
+            <a href="#contact" class="block text-[#2C2416]">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Decorative Elements -->
+        <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-[#6B4423]/5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#8B6F47]/5 rounded-full blur-3xl -z-10"></div>
+        
+        <!-- Large Rotating Circle -->
+        <div class="absolute right-[-10%] top-[10%] w-[800px] h-[800px] border-2 border-[#6B4423]/10 rounded-full rotate-slow opacity-30"></div>
+        <div class="absolute right-[-5%] top-[15%] w-[700px] h-[700px] border border-[#6B4423]/20 rounded-full rotate-slow opacity-40" style="animation-direction: reverse;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="space-y-8 z-10">
+                <div class="space-y-4">
+                    <p class="text-[#8B6F47] font-medium tracking-widest uppercase text-sm hero-anim">Graphic Designer</p>
+                    <h1 class="text-6xl md:text-8xl font-bold serif text-[#6B4423] leading-tight hero-anim">
+                        Chukwuemeka<br>
+                        <span class="text-[#8B6F47]">Ruth</span>
+                    </h1>
+                </div>
+                <p class="text-lg text-[#2C2416]/70 leading-relaxed max-w-lg hero-anim">
+                    Welcome to my portfolio! Here, you'll find a curated collection of my work that reflects my passion for visual storytelling and creative expression. With a strong belief in the power of design to communicate ideas and evoke emotions.
+                </p>
+                <div class="flex gap-4 hero-anim">
+                    <a href="#portfolio" class="magnetic-btn inline-flex items-center px-8 py-4 bg-[#6B4423] text-white rounded-full font-medium hover:bg-[#5a3a1d] transition-colors shadow-lg shadow-[#6B4423]/20">
+                        View My Work
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <a href="#contact" class="magnetic-btn inline-flex items-center px-8 py-4 border-2 border-[#6B4423] text-[#6B4423] rounded-full font-medium hover:bg-[#6B4423] hover:text-white transition-all">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="relative hero-image-container">
+                <div class="relative w-full aspect-square max-w-lg mx-auto">
+                    <!-- Decorative Circles -->
+                    <div class="absolute inset-0 border-[40px] border-[#6B4423] rounded-full opacity-20 scale-110"></div>
+                    <div class="absolute inset-0 border-[20px] border-[#8B6F47] rounded-full opacity-30 scale-105"></div>
+                    
+                    <!-- Main Image Container -->
+                    <div class="relative w-full h-full rounded-full overflow-hidden border-[16px] border-[#F5F1E8] shadow-2xl floating">
+                        <img src="WhatsApp Image 2026-03-27 at 10.57.17.jpeg" 
+                             alt="Chukwuemeka Ruth working" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-[#6B4423] rounded-full flex items-center justify-center text-white shadow-lg floating" style="animation-delay: 1s;">
+                        <span class="text-xs font-bold text-center">4+ Years<br>Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-[#6B4423]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- About Image -->
+                <div class="relative about-image">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-[#6B4423]/10 organic-shape"></div>
+                        <div class="relative organic-shape overflow-hidden shadow-2xl">
+                            <img src="WhatsApp Image 2026-03-27 at 10.57.16.jpeg" 
+                                 alt="Creative workspace" 
+                                 class="w-full h-[500px] object-cover">
+                        </div>
+                    </div>
+                    <!-- Stats Card -->
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-[#6B4423]/10">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-[#6B4423] rounded-full flex items-center justify-center text-white font-bold">4+</div>
+                            <div>
+                                <p class="text-sm text-gray-600">Years of</p>
+                                <p class="font-bold text-[#6B4423]">Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Content -->
+                <div class="space-y-6 about-content">
+                    <h2 class="text-5xl font-bold serif text-[#6B4423]">About Me</h2>
+                    <div class="w-20 h-1 bg-[#8B6F47]"></div>
+                    <p class="text-lg text-[#2C2416]/70 leading-relaxed">
+                        Hello! I am <span class="font-semibold text-[#6B4423]">Chukwuemeka Ruth</span>, a passionate graphic designer with 4 years of experience in the industry. My journey into design began with a love for art and creativity, which evolved into a career dedicated to crafting compelling visual narratives.
+                    </p>
+                    <p class="text-lg text-[#2C2416]/70 leading-relaxed">
+                        I strive to create impactful visuals that resonate with audiences and leave lasting impressions. Every project is an opportunity to tell a unique story through the power of design.
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <div class="text-center">
+                            <h4 class="text-3xl font-bold text-[#6B4423]">50+</h4>
+                            <p class="text-sm text-gray-600">Projects Completed</p>
+                        </div>
+                        <div class="w-px bg-[#6B4423]/20"></div>
+                        <div class="text-center">
+                            <h4 class="text-3xl font-bold text-[#6B4423]">30+</h4>
+                            <p class="text-sm text-gray-600">Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 bg-[#F5F1E8] relative">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(#6B4423 1px, transparent 1px); background-size: 30px 30px;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold serif text-[#6B4423] mb-4">Skills & Expertise</h2>
+                <p class="text-lg text-[#2C2416]/60 max-w-2xl mx-auto">
+                    As a graphic designer, I have developed a diverse skill set that allows me to tackle a variety of projects with creativity and precision.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Skill Card 1 -->
+                <div class="skill-card bg-white p-8 rounded-3xl shadow-lg border border-[#6B4423]/5">
+                    <div class="w-16 h-16 bg-[#6B4423]/10 rounded-2xl flex items-center justify-center mb-6 text-[#6B4423]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold serif text-[#6B4423] mb-3">Identity Design</h3>
+                    <p class="text-[#2C2416]/60">Crafting unique brand identities that capture essence and establish strong visual presence.</p>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="skill-card bg-white p-8 rounded-3xl shadow-lg border border-[#6B4423]/5">
+                    <div class="w-16 h-16 bg-[#8B6F47]/10 rounded-2xl flex items-center justify-center mb-6 text-[#8B6F47]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold serif text-[#6B4423] mb-3">Digital Design</h3>
+                    <p class="text-[#2C2416]/60">Creating engaging digital experiences with modern aesthetics and user-centered approaches.</p>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="skill-card bg-white p-8 rounded-3xl shadow-lg border border-[#6B4423]/5">
+                    <div class="w-16 h-16 bg-[#6B4423]/10 rounded-2xl flex items-center justify-center mb-6 text-[#6B4423]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold serif text-[#6B4423] mb-3">Print Design</h3>
+                    <p class="text-[#2C2416]/60">Designing striking print collateral that communicates effectively and leaves lasting impressions.</p>
+                </div>
+
+                <!-- Skill Card 4 -->
+                <div class="skill-card bg-white p-8 rounded-3xl shadow-lg border border-[#6B4423]/5">
+                    <div class="w-16 h-16 bg-[#8B6F47]/10 rounded-2xl flex items-center justify-center mb-6 text-[#8B6F47]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold serif text-[#6B4423] mb-3">Illustration</h3>
+                    <p class="text-[#2C2416]/60">Custom graphics and artwork that enrich projects and tell powerful visual stories.</p>
+                </div>
+
+                <!-- Skill Card 5 -->
+                <div class="skill-card bg-white p-8 rounded-3xl shadow-lg border border-[#6B4423]/5">
+                    <div class="w-16 h-16 bg-[#6B4423]/10 rounded-2xl flex items-center justify-center mb-6 text-[#6B4423]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold serif text-[#6B4423] mb-3">Photo Editing</h3>
+                    <p class="text-[#2C2416]/60">Professional retouching and manipulation to create perfect visual assets.</p>
+                </div>
+
+                <!-- Skill Card 6 -->
+                <div class="skill-card bg-white p-8 rounded-3xl shadow-lg border border-[#6B4423]/5">
+                    <div class="w-16 h-16 bg-[#8B6F47]/10 rounded-2xl flex items-center justify-center mb-6 text-[#8B6F47]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold serif text-[#6B4423] mb-3">Typography</h3>
+                    <p class="text-[#2C2416]/60">Expert type selection and layout that enhances readability and visual hierarchy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Overview -->
+    <section id="portfolio" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold serif text-[#6B4423] mb-4">Portfolio Overview</h2>
+                <p class="text-lg text-[#2C2416]/60 max-w-2xl mx-auto">
+                    A curated collection showcasing my diverse skills, creativity, and experience across various design disciplines.
+                </p>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <!-- Branding -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer">
+                    <img src="WhatsApp Image 2026-03-24 at 13.31.05.jpeg" 
+                         alt="Branding Projects" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#6B4423] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white serif">Branding Projects</h3>
+                        <p class="text-white/80 mt-2">Logo design, color palettes, typography, and brand guidelines</p>
+                    </div>
+                </div>
+
+                <!-- Web Design -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer">
+                    <img src="WhatsApp Image 2026-03-24 at 13.31.04 (1).jpeg" 
+                         alt="Web Design" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#6B4423] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white serif">Web Design</h3>
+                        <p class="text-white/80 mt-2">Responsive designs and user experience focused creations</p>
+                    </div>
+                </div>
+
+                <!-- Print Design -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer">
+                    <img src="WhatsApp Image 2026-03-24 at 13.31.04 (2).jpeg" 
+                         alt="Print Design" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#6B4423] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white serif">Print Design</h3>
+                        <p class="text-white/80 mt-2">Brochures, posters, and packaging designs</p>
+                    </div>
+                </div>
+
+                <!-- Illustration -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer lg:col-span-2">
+                    <img src="WhatsApp Image 2026-03-24 at 13.31.06.jpeg" 
+                         alt="Illustration" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#6B4423] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white serif">Illustration</h3>
+                        <p class="text-white/80 mt-2">Custom graphics and artwork for powerful storytelling</p>
+                    </div>
+                </div>
+
+                <!-- Fashion/Editorial -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer">
+                    <img src="WhatsApp Image 2026-03-24 at 13.31.06 (1).jpeg" 
+                         alt="Fashion Design" 
+                         class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#6B4423] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white serif">Editorial Design</h3>
+                        <p class="text-white/80 mt-2">Fashion layouts and visual compositions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Work Showcase -->
+            <div class="bg-[#6B4423] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
+                
+                <h3 class="text-3xl font-bold serif mb-8 relative z-10">Featured Projects</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-4 hover:bg-white/20 transition-colors cursor-pointer">
+                        <div class="aspect-square rounded-xl bg-gradient-to-br from-pink-400 to-purple-600 mb-3 overflow-hidden">
+                            <img src="WhatsApp Image 2026-03-24 at 13.31.05.jpeg" class="w-full h-full object-cover opacity-80" alt="Beauty">
+                        </div>
+                        <p class="font-semibold">Beauty & Cosmetics</p>
+                        <p class="text-sm text-white/60">Brand Identity</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-4 hover:bg-white/20 transition-colors cursor-pointer">
+                        <div class="aspect-square rounded-xl bg-gradient-to-br from-blue-400 to-cyan-600 mb-3 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop" class="w-full h-full object-cover opacity-80" alt="Fashion">
+                        </div>
+                        <p class="font-semibold">Fashion Lookbook</p>
+                        <p class="text-sm text-white/60">Editorial Design</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-4 hover:bg-white/20 transition-colors cursor-pointer">
+                        <div class="aspect-square rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 mb-3 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=300&fit=crop" class="w-full h-full object-cover opacity-80" alt="Food">
+                        </div>
+                        <p class="font-semibold">Food & Beverage</p>
+                        <p class="text-sm text-white/60">Packaging</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-4 hover:bg-white/20 transition-colors cursor-pointer">
+                        <div class="aspect-square rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 mb-3 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop" class="w-full h-full object-cover opacity-80" alt="Product">
+                        </div>
+                        <p class="font-semibold">Product Showcase</p>
+                        <p class="text-sm text-white/60">Digital Marketing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software/Tools Section -->
+    <section id="software" class="py-32 bg-[#F5F1E8]">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-bold serif text-[#6B4423] mb-4">Tools I Use</h2>
+            <p class="text-lg text-[#2C2416]/60 mb-16">Here are some of the software I make use of to bring ideas to life</p>
+            
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+                <!-- Photoshop -->
+                <div class="software-icon group cursor-pointer">
+                    <div class="w-24 h-24 md:w-32 md:h-32 bg-[#001E36] rounded-3xl shadow-2xl flex items-center justify-center mb-4 group-hover:shadow-blue-500/50 transition-all duration-300">
+                        <span class="text-[#31A8FF] text-4xl md:text-5xl font-bold">Ps</span>
+                    </div>
+                    <p class="font-semibold text-[#2C2416]">Photoshop</p>
+                </div>
+
+                <!-- Illustrator -->
+                <div class="software-icon group cursor-pointer">
+                    <div class="w-24 h-24 md:w-32 md:h-32 bg-[#330000] rounded-3xl shadow-2xl flex items-center justify-center mb-4 group-hover:shadow-orange-500/50 transition-all duration-300">
+                        <span class="text-[#FF9A00] text-4xl md:text-5xl font-bold">Ai</span>
+                    </div>
+                    <p class="font-semibold text-[#2C2416]">Illustrator</p>
+                </div>
+
+                <!-- Canva -->
+                <div class="software-icon group cursor-pointer">
+                    <div class="w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-[#00C4CC] to-[#7B2CBF] rounded-3xl shadow-2xl flex items-center justify-center mb-4 group-hover:shadow-purple-500/50 transition-all duration-300">
+                        <span class="text-white text-2xl md:text-3xl font-bold">Canva</span>
+                    </div>
+                    <p class="font-semibold text-[#2C2416]">Canva</p>
+                </div>
+
+                <!-- InDesign -->
+                <div class="software-icon group cursor-pointer">
+                    <div class="w-24 h-24 md:w-32 md:h-32 bg-[#49021F] rounded-3xl shadow-2xl flex items-center justify-center mb-4 group-hover:shadow-pink-500/50 transition-all duration-300">
+                        <span class="text-[#FF3366] text-4xl md:text-5xl font-bold">Id</span>
+                    </div>
+                    <p class="font-semibold text-[#2C2416]">InDesign</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#6B4423]/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="mb-12">
+                <h2 class="text-5xl md:text-6xl font-bold serif text-[#6B4423] mb-6">Let's Work Together</h2>
+                <p class="text-xl text-[#2C2416]/70">Thank you for visiting, and I hope you find inspiration in my work!</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-[#6B4423]/10">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="flex items-center gap-4 p-4 bg-[#F5F1E8] rounded-2xl">
+                        <div class="w-12 h-12 bg-[#6B4423] rounded-full flex items-center justify-center text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm text-gray-500">Location</p>
+                            <p class="font-semibold text-[#6B4423]">Abuja, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-[#F5F1E8] rounded-2xl">
+                        <div class="w-12 h-12 bg-[#6B4423] rounded-full flex items-center justify-center text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm text-gray-500">Phone</p>
+                            <p class="font-semibold text-[#6B4423]">09063353160</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="space-y-6 text-left" onsubmit="event.preventDefault(); alert('Thank you for your message! I will get back to you soon.');">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-[#2C2416] mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-xl border border-[#6B4423]/20 focus:border-[#6B4423] focus:ring-2 focus:ring-[#6B4423]/20 outline-none transition-all bg-[#FAF7F2]" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-[#2C2416] mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-xl border border-[#6B4423]/20 focus:border-[#6B4423] focus:ring-2 focus:ring-[#6B4423]/20 outline-none transition-all bg-[#FAF7F2]" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-[#2C2416] mb-2">Message</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-[#6B4423]/20 focus:border-[#6B4423] focus:ring-2 focus:ring-[#6B4423]/20 outline-none transition-all bg-[#FAF7F2]" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-[#6B4423] text-white rounded-xl font-semibold hover:bg-[#5a3a1d] transition-colors shadow-lg shadow-[#6B4423]/20">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#6B4423] text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h3 class="text-2xl font-bold serif mb-2">Chukwuemeka Ruth</h3>
+                <p class="text-white/60">Graphic Designer & Visual Storyteller</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069
